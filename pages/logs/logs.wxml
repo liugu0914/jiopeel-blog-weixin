@@ -1,0 +1,41 @@
+<!--logs.wxml-->
+<view class="container">
+	<view class="container-fluid">
+
+      <view wx:for="{{items}}" wx:key="index" wx:for-item="item"  class="row mb-3">
+        <view class="col-12">
+            <view class="text-center text-muted small mb-2">{{item.ctime}}</view>
+            <view class="flex  mr-2">
+              <view class="mr-1">
+                <image class="rounded-circle w-40" src="https://img.zhikezhui.com/zkz"></image>
+              </view>
+              <view>
+                <view class="pb-2 font-weight-bold">{{item.author}}</view>
+                <view class="content-item">
+                  <rich-text nodes="{{item.comment}}"></rich-text>
+                </view>
+              </view>
+            </view>
+            <view class="mt-3" wx:for="{{item.replys}}" wx:key="index" wx:for-item="reply">
+              <view class="text-center text-muted small mb-2">{{reply.ctime}}</view>
+              <view class="flex  mr-2">
+                <view class="mr-1">
+                  <image class="rounded-circle w-40" src="https://img.zhikezhui.com/zkz"></image>
+                </view>
+                <view>
+                  <view class="pb-2 font-weight-bold">{{reply.author}}</view>
+                  <view class="content-item"><text class="text-info pr-1">{{'@'+reply.superauthor}}</text>{{reply.comment}}</view>
+                </view>
+              </view>
+            </view>
+        </view>
+      </view>
+
+      
+		<view class="row pb-6">
+			<view class="col-12">
+				<view class="text-muted text-center small">{{msg}}</view>
+			</view>
+		</view>
+	</view>
+</view>

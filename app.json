@@ -1,0 +1,29 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "navigationBarBackgroundColor": "#f4f4f4",
+    "backgroundColor":"#f4f4f4",
+    "navigationBarTitleText": "知可追",
+    "navigationBarTextStyle":"black",
+    "backgroundTextStyle":"dark"
+  },
+  "tabBar": {
+    "custom": true,
+    "borderStyle":"white",
+    "backgroundColor":"#FFFFFF",
+    "selectedColor": "#ffbc00",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/logs/logs",
+      "text": "日志"
+    }]
+  },
+  "usingComponents": {},
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

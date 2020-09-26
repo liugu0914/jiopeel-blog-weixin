@@ -1,0 +1,61 @@
+@import "../iconfont.wxss";
+
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  margin: 0 10% 10px 10%;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 12px 24px 0 rgba(7, 17, 27, 0.2);
+  background: white;
+  display: flex;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tab-bar-item {
+  padding: 10rpx 40rpx;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.tab-add {
+  width: 55px;
+  height: 55px;
+  background-color: #fff;
+  box-shadow: 2px 5px 10px 0 rgba(7, 17, 27, 0.2);
+  border-radius: 50%;
+  position: fixed;
+  bottom: 0px;
+  left: 50%; 
+  transform:translate(-50%,-50%);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tab-add .icon{
+  font-size:1.5em;
+}
+
+.tab-bar-item cover-image {
+  width: 27px;
+  height: 27px;
+}
+
+.tab-bar-item view {
+  font-size: 12px;
+}
+
+.icon-img{
+  font-size: 1.2rem;
+}

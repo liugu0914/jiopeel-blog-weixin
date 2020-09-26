@@ -1,0 +1,6 @@
+.content-item{
+  background-color: #fff;
+  color: #000;
+  border-radius :.25rem;
+  padding: 20rpx;
+}

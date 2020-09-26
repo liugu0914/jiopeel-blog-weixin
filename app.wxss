@@ -1,0 +1,25 @@
+/**app.wxss**/
+@import "./iconfont.wxss";
+@import "./lyc.wxss";
+
+page {
+  height:100%;
+}
+
+view{
+  box-sizing: border-box;
+}
+
+.card-bg-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.shadow-inset {
+  box-shadow:inset 0px 0px 50px 10px #00000064;
+}
+.emoji{
+  margin-left: 2px;
+  margin-right: 2px;
+}
