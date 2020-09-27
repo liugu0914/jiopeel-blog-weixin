@@ -1,0 +1,31 @@
+@import "../../wxParse/wxParse.wxss";
+.img{
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border-style: none;
+}
+
+.image{
+  margin: 1.4em 0;
+  text-align: center;
+}
+
+.article-title{
+  clear: left;
+  font-weight: 600;
+  font-synthesis: style;
+  font-size: 24px;
+  line-height: 1.22;
+  margin: 24px 0;
+  word-wrap: break-word;
+}
+
+.article-content{
+  overflow: hidden;
+}
+
+
+.comment-border {
+  border-top: 1px solid #ddd;
+}

@@ -8,7 +8,7 @@ Component({
       icon : "cs cs-jiopeel",
       text: "主页"
     }, {
-      pagePath: "/pages/logs/logs",
+      pagePath: "/pages/message/message",
       icon : "cs cs-pinglun",
       text: "留言"
     }]

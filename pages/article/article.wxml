@@ -1,0 +1,112 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class="container">
+	<view class="container-fluid">
+		<!-- 文章区 -->
+		<view class="row mb-2">
+			<view class="col-12">
+				<view class="pl-2 pr-2">
+					<view class="mb-2 article-title">
+						{{item.title}}
+					</view>
+					<view class="text-muted small">
+						<text class="mr-2">作者 : {{'了了'}}</text>
+						<text class="mr-2">{{item.ctime}}</text>
+					</view>
+					<view class="pt-3 middle article-content">
+						<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 点赞区 -->
+		<view class="row pt-4 mb-4">
+			<view class="col-12 text-center text-xl pt-3">
+				<text class="text-muted small">喜欢就点个赞吧~</text>
+				<view class="p-2">
+					<button size="mini" id="{{item.id}}" bindtap="giveLike" hover-class="btn-danger-hover" class="btn btn-danger btn-rounded">
+						<i class="cs cs-xihuan mr-1"></i>
+						<text>{{love}}</text>
+					</button>
+				</view>
+			</view>
+		</view>
+		<!-- 评论区 -->
+		<view class="row mb-3">
+			<view class="col-12">
+				<view class="flex justify-content-between">
+					<view>
+						<i class="cs cs-pinglun mr-1"></i>
+						<text class="text-sm align-middle">
+                  <text>评论</text>
+						<text class="text-muted small">({{total}})</text>
+						</text>
+					</view>
+					<view class="text-info middle">写评论</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="row mb-4">
+			<view class="col-12">
+				<view wx:for="{{comments}}" wx:key="index" wx:for-item="comment" class="flex comment-border pt-3 pb-3 br-2">
+					<view class="pr-1 mr-1">
+						<image class="rounded-circle w-40" src="../../images/user.png"></image>
+					</view>
+					<view style="width:100%">
+						<view class="pb-1 font-weight-bold">
+							<text>{{comment.author}}</text>
+							<view class="float-right small">
+								<i class="cs cs-dianzan  mr-1"></i>
+								<text>{{comment.love}}</text>
+							</view>
+						</view>
+						<view class="pb-1">
+							<rich-text nodes="{{comment.comment}}"></rich-text>
+						</view>
+						<view class="pb-1 small">
+							<text class="text-muted">{{comment.ctime}}</text>
+							<view class="float-right">
+								<i class="cs cs-pinglun  mr-1"></i>
+								<text>回复</text>
+							</view>
+						</view>
+
+						<view  wx:for="{{comment.replys}}" wx:key="index" wx:for-item="reply" class="flex mt-2">
+							<view class="pr-1 mr-1">
+								<image class="rounded-circle w-40" src="../../images/user.png"></image>
+							</view>
+							<view style="width:100%">
+								<view class="pb-1 font-weight-bold">
+									<text>{{reply.author}}</text>
+									<view class="float-right small">
+										<i class="cs cs-dianzan  mr-1"></i>
+										<text>{{reply.love}}</text>
+									</view>
+								</view>
+								<view class="pb-1">
+									<rich-text nodes="{{reply.comment}}"></rich-text>
+								</view>
+								<view class="pb-1 small">
+									<text class="text-muted">{{reply.ctime}}</text>
+									<view class="float-right">
+										<i class="cs cs-pinglun  mr-1"></i>
+										<text>回复</text>
+									</view>
+								</view>
+							</view>
+						</view>
+
+					</view>
+				</view>
+
+			</view>
+		</view>
+
+
+		<view class="row mb-4">
+			<view class="col-12">
+				<view class="text-muted text-center small">{{msg}}</view>
+			</view>
+		</view>
+	</view>
+</view>

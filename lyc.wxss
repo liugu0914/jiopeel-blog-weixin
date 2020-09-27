@@ -278,6 +278,19 @@ Size
     background-color: transparent !important;
 }
 
+.btn {
+    border-radius: 2px;
+    white-space: normal;
+    font-size: .875rem;
+    padding: .375rem 1rem;
+}
+
+.btn-rounded {
+    border-radius: 4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
 .btn-success {
     color: #fff;
     background-color: #0acf97;
@@ -315,6 +328,53 @@ Size
     border-color: #313a46;
 }
 
+
+.btn-primary {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(114, 124, 245, 0.5);
+    box-shadow: 0 2px 6px 0 rgba(114, 124, 245, 0.5);
+}
+
+.btn-secondary {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(108, 117, 125, 0.5);
+    box-shadow: 0 2px 6px 0 rgba(108, 117, 125, 0.5);
+}
+
+.btn-success {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(10, 207, 151, 0.5);
+    box-shadow: 0 2px 6px 0 rgba(10, 207, 151, 0.5);
+}
+
+.btn-info {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(57, 175, 209, 0.5);
+    box-shadow: 0 2px 6px 0 rgba(57, 175, 209, 0.5);
+}
+
+.btn-warning {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(255, 188, 0, 0.5);
+    box-shadow: 0 2px 6px 0 rgba(255, 188, 0, 0.5);
+}
+
+.btn-danger {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(250, 92, 124, 0.5);
+    box-shadow: 0 2px 6px 0 rgba(250, 92, 124, 0.5);
+}
+
+.btn-light {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(227, 234, 239, 0.5);
+    box-shadow: 0 2px 6px 0 rgba(227, 234, 239, 0.5);
+}
+
+.btn-dark {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(49, 58, 70, 0.5);
+    box-shadow: 0 2px 6px 0 rgba(49, 58, 70, 0.5);
+}
+
+.btn-danger-hover{
+    color: #fff;
+    background-color: #f82b54;
+    border-color: #f81e4a;
+    box-shadow: 0 0 0 0.2rem rgba(251, 116, 144, 0.5);
+}
 
 .text-secondary {
     color: #6c757d !important;
@@ -556,6 +616,12 @@ Size
 small {
     font-size: 0.75rem !important;
     font-weight: 400 !important;
+}
+
+.middle,
+middle {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
 }
 
 .font-weight-light {

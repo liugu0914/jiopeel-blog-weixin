@@ -2,7 +2,6 @@ import api from '../../utils/requset';
 import Tool from '../../utils/tool';
 
 
-
 //获取应用实例
 const app = getApp()
 const gData = app.globalData;
@@ -161,6 +160,37 @@ Component({
         }
         const key =Math.floor(Math.random() * (says.length - 1 ))
         that.setData(says[key])
+      })
+    },
+    openArticle:function(event){
+      console.log(event)
+      const target = event.currentTarget
+      const id = target.id
+      wx.navigateTo({
+        url: '/pages/article/article',
+        events: {
+          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+          acceptDataFromOpenedPage: function(data) {
+            console.log(data)
+          },
+          someEvent: function(data) {
+            console.log(data)
+          }
+        },
+        success: function(res) {
+          console.log("打开成功")
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', { id:id })
+        },
+        fail:function(res) {
+          console.log("开启失败 ：" + res)
+          return wx.showToast({
+            title: "页面无效",
+            icon: 'none',
+            mask: true,
+            duration: 2000
+          })
+        }
       })
     },
     onShow(options) {

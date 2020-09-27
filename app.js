@@ -66,7 +66,7 @@ App({
         var item = that.emoji[i];
 
         if (str === "[" + item.name + "]") {
-          return "<img class=\"w-20 emoji\" src=\""+imgUrl+item.name+".png\" />";
+          return "<img class=\"w-20 emoji\" src=\""+imgUrl+item.id+".png\" />";
         }
       }
       return str;

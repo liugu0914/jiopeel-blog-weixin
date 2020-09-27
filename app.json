@@ -1,7 +1,7 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/message/message"
   ],
   "window":{
     "navigationBarBackgroundColor": "#f4f4f4",
@@ -19,7 +19,7 @@
       "pagePath": "pages/index/index",
       "text": "首页"
     }, {
-      "pagePath": "pages/logs/logs",
+      "pagePath": "pages/message/message",
       "text": "日志"
     }]
   },
