@@ -1,10 +1,10 @@
 import api from '../../utils/requset';
 import Tool from '../../utils/tool';
 import WxParse from '../../wxParse/wxParse.js';
+import comment from '../comment/comment';
 
 //获取应用实例
 const app = getApp()
-const gData = app.globalData;
 const baseUrl = app.baseUrl;
 
 Component({
@@ -16,7 +16,13 @@ Component({
     pages:0,
     pageNum:0,
     total : 0,
-    msg: '加载中...'
+    msg: '加载中...',
+    template :{
+      disabled :true,
+      comment :"",
+      class :'',
+      textShow:false
+    }
   },
   methods: {
     onLoad: function () {
@@ -81,10 +87,11 @@ Component({
      * 文章点赞
      */
     giveLike: function (event) {
-      const id =this.data.contentid?this.data.contentid:String(event.currentTarget.id)
+      const key = "ContentLikes"
+      const id =String(event.currentTarget.id)
       console.log("id :" + id)
       const that = this
-      const likes = wx.getStorageSync('likes') || []
+      const likes = wx.getStorageSync(key) || []
       if (likes.indexOf(id) > -1) {
         return wx.showToast({
           title: "你已经点过赞了",
@@ -107,7 +114,7 @@ Component({
             love: base.data.love
           })
           likes.push(id)
-          wx.setStorageSync('likes', likes)
+          wx.setStorageSync(key, likes)
         }).catch((msg) => {
           if (!msg) {
             return
@@ -119,6 +126,7 @@ Component({
           })
         })
     },
+
     /**
      *  上拉加载被触发
      */
@@ -184,6 +192,84 @@ Component({
           duration: 2000
         })
       }).done()
+    },
+    giveCommentLike:function(event){
+      const key = "CommentLikes"
+      const data =event.currentTarget.dataset
+      console.log("data :" + JSON.stringify(data))
+      const id =String(data.id)
+      const that = this
+      const likes = wx.getStorageSync(key) || []
+      if (likes.indexOf(id) > -1) {
+        return wx.showToast({
+          title: "你已经点过赞了",
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      api.requestForm(baseUrl + "/CommentLike", "post", {
+        id: id
+      })
+      .then((base) => {
+        if (base.status !== 200) {
+          return wx.showToast({
+            title: "页面加载失败",
+            icon: 'none',
+            duration: 2000
+          })
+        }
+        const reply = data.replyindex || data.replyindex ===0 ?`.replys[${data.replyindex}]`:''
+        const changeComments =`comments[${data.index}]${reply}.love`
+        that.setData({
+          [changeComments]: base.data.love
+        })
+        likes.push(id)
+        wx.setStorageSync(key, likes)
+      }).catch((msg) => {
+        if (!msg) {
+          return
+        }
+        wx.showToast({
+          title: msg,
+          icon: 'none',
+          duration: 2000
+        })
+      })
+    },
+    openComment:function(event){
+      console.log(event)
+      this.setData({
+        "template.class": "show",
+        "template.textShow": true
+      })
+    },
+    closeComment:function(event){
+      console.log(event)
+      this.setData({
+        "template.class": "",
+        "template.textShow": false
+      })
+    },
+    inputChange:function(event){
+      console.log(event)
+      const value =event.detail.value
+      this.setData({
+        "template.disabled": !(value && value.length>0),
+        "template.comment":value
+      })
+    },
+    sendComment:function(event){
+      console.log(event)
+      const that =this 
+      // api.request(baseUrl+"/saveComments","post",{
+      //   author: "cxx",
+      //   comment: that.data.template.comment,
+      //   contact: "liugu0914@sina.com",
+      //   contentid: that.data.contentid,
+      //   style: "content",
+      //   superid: "0",
+      //   topid: "0"
+      // })
     }
   }
 })

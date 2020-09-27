@@ -1,0 +1,24 @@
+<template name="commentarea">
+	<view class="comment {{class}}">
+
+		<view class="card comment-card">
+			<view class="flex align-content-center justify-content-around comment-header">
+				<view class="w-100p text-left">
+					<i class="cs cs-close" bindtap="closeComment"></i>
+				</view>
+				<view  class="w-100p text-center">
+					<text>评论</text>
+				</view>
+				<view  class="w-100p text-right">
+					<button class="btn btn-danger btn-none small m-0" bindtap="sendComment"  disabled="{{disabled}}" hover-class="btn-danger-hover" size="mini">
+						提交
+					</button>
+				</view>
+			</view>
+			<view class="card-body">
+        <textarea wx:if="{{textShow}}" class="comment-textarea" fixed="true" maxlength="300" bindinput="inputChange"  placeholder="快来评论吧~"/>
+			</view>
+		</view>
+
+	</view>
+</template>

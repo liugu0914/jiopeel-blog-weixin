@@ -221,6 +221,9 @@ Size
     min-height: 50vh;
 }
 
+.w-100p {
+    width: 100%;
+}
 
 .w-90 {
     width: 90vw;
@@ -374,6 +377,10 @@ Size
     background-color: #f82b54;
     border-color: #f81e4a;
     box-shadow: 0 0 0 0.2rem rgba(251, 116, 144, 0.5);
+}
+
+.btn-none{
+    box-shadow:none!important;
 }
 
 .text-secondary {

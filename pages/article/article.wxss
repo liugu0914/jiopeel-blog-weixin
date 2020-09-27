@@ -1,4 +1,6 @@
 @import "../../wxParse/wxParse.wxss";
+@import "../comment/comment.wxss";
+
 .img{
   max-width: 100%;
   height: auto;
