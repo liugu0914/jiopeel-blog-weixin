@@ -67,7 +67,7 @@
 						</view>
 						<view class="pb-1 small">
 							<text class="text-muted">{{comment.ctime}}</text>
-							<view class="float-right">
+							<view class="float-right"  bindtap="openComment" data-superid="{{comment.id}}" data-topid="{{comment.id}}"  data-title="{{comment.author}}">
 								<i class="cs cs-pinglun  mr-1"></i>
 								<text>回复</text>
 							</view>
@@ -84,7 +84,7 @@
                     <block wx:if="{{reply.topid !== '0' && reply.topid !== reply.superid}}">
                       <span><i class="cs cs-xiangyou1"></i></span>
                       <image class="rounded-circle w-28 mr-1" src="../../images/user.png"></image>
-                      <text>{{reply.superauthor}}</text>
+                      <text>{{reply.superauthor?reply.superauthor:'外星人'}}</text>
                     </block>
                   </view>
 									<view data-id="{{reply.id}}" data-index="{{comment_index}}" data-replyindex="{{reply_index}}" bindtap="giveCommentLike">
@@ -97,7 +97,7 @@
 								</view>
 								<view class="pb-1 small">
 									<text class="text-muted">{{reply.ctime}}</text>
-									<view class="float-right">
+									<view class="float-right"  bindtap="openComment"  data-superid="{{reply.id}}" data-topid="{{reply.topid}}" data-title="{{reply.author}}">
 										<i class="cs cs-pinglun  mr-1"></i>
 										<text>回复</text>
 									</view>

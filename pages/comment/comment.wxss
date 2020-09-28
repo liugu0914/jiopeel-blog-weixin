@@ -2,14 +2,29 @@
 
 .comment{
   position: fixed;
-  min-height: 100vh;
+  min-height: 240px;
+  height: 240px;
   width: 100vw;
   left: 0px;
   right: 0px;
-  top: 100%;
-  bottom: 0px;
+  bottom: -100vh;
   z-index: 100;
-  transition: top 0.5s ;
+  transition: bottom 0.5s,height 0.5s;
+}
+
+
+.comment-mask{
+  display: none;
+  position: fixed;
+  min-height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+  left: 0px;
+  right: 0px;
+  top: 0;
+  bottom: 0px;
+  z-index: 90;
+  background-color: #313a463b !important;
 }
 
 .comment-card{
@@ -17,31 +32,76 @@
   margin: 0;
   padding: 0;
   position: absolute;
-  height: 50%;
+  height: 240px;
   width: 100%;
-  border-radius: 0;
   z-index: 120;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  background-color: #313a46 !important;
-  color: #f4f4f4;
+  background-color: #f4f4f4 !important;
+  color: #000;
+}
+
+
+.comment-card-body{
+  z-index: 130;
 }
 
 
 .comment.show{
-  top:0;
-  overflow: hidden;
+  bottom: 0;
 }
+
+.comment-mask.show{
+  display: block;
+}
+
 
 
 .comment-header{
   padding: 0.75rem 1.5rem;
   margin-top: 0;
   margin-bottom: 0;
-  color: #f4f4f4;
 }
 
 .comment-textarea{
   width: 100%;
-  height: 100%;
+  min-height: 120px;
+  height: 120px;
+}
+
+.comment.show{
+  bottom: 0;
+}
+
+
+.ql-editor.ql-blank:before{
+  color: #9ca0ad !important
+
+}
+
+.emoji-view{
+  display: none;
+  width: 100%;
+  height: 200px;
+  margin-top: 0.375rem !important;
+  margin-bottom: 0.375rem !important;
+}
+
+.comment-textarea.has-emoji{
+  height: 45px!important;
+  min-height: 45px;
+}
+
+.comment.has-emoji{
+  height: 400px!important;
+}
+
+.comment-card.has-emoji{
+  height: 400px!important;
+}
+
+.emoji-view.has-emoji{
+  display: block;
 }

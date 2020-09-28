@@ -1,24 +1,36 @@
 <template name="commentarea">
-	<view class="comment {{class}}">
-
-		<view class="card comment-card">
-			<view class="flex align-content-center justify-content-around comment-header">
+	<view class="comment {{class}} {{hasEmoji}}">
+		<view class="card comment-card {{hasEmoji}}" >
+			<view catchtouchmove="StopMove" class="flex align-content-center justify-content-between comment-header">
 				<view class="w-100p text-left">
-					<i class="cs cs-close" bindtap="closeComment"></i>
+					<i class="cs cs-close" bindtap="closeComment" style="font-size: 1.2rem;"></i>
 				</view>
-				<view  class="w-100p text-center">
-					<text>评论</text>
+				<view class="w-100p text-center">
+					<text>{{title}}</text>
 				</view>
-				<view  class="w-100p text-right">
-					<button class="btn btn-danger btn-none small m-0" bindtap="sendComment"  disabled="{{disabled}}" hover-class="btn-danger-hover" size="mini">
-						提交
-					</button>
+				<view class="w-100p flex  justify-content-end text-right">
+					<view class="w-auto">
+						<button class="btn btn-success btn-none small m-0" bindtap="sendComment" disabled="{{disabled}}" hover-class="btn-success-hover" size="mini">
+							提交
+						</button>
+					</view>
 				</view>
 			</view>
-			<view class="card-body">
-        <textarea wx:if="{{textShow}}" class="comment-textarea" fixed="true" maxlength="300" bindinput="inputChange"  placeholder="快来评论吧~"/>
+			<view class="card-body comment-card-body pb-1" >
+				<scroll-view class="pb-2" scroll-y="true" >
+					<textarea id="editor" value="{{comment}}" cursor-spacing="200" focus="{{focus}}" class="comment-textarea {{hasEmoji}}" show-confirm-bar="false" maxlength="300" bindinput="inputChange" placeholder="快来评论吧~"/>
+				</scroll-view>
+				<view class="w-auto"  catchtouchmove="StopMove">
+					<i class="cs {{showEmoji?'cs-xiangxia':'cs-biaoqing'}}" bindtap="showEmoji" style="font-size: 1.2rem;"></i>
+				</view>
+				<scroll-view scroll-y="true"  catchtouchmove="StopMove" class="emoji-view {{hasEmoji}}" >
+					<block wx:for="{{emojis}}" wx:key="index"  wx:for-item="emoji">
+							<image class="w-24 p-1" src="../../images/emoji/{{emoji.id}}.png" bindtap="sendEmoji" data-name="{{emoji.name}}" data-id="{{emoji.id}}"></image>
+					</block>
+				</scroll-view>
 			</view>
 		</view>
-
 	</view>
+	
+	<view class="comment-mask {{class}}" bindtap="closeComment" catchtouchmove="StopMove"></view>
 </template>
