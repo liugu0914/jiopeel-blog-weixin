@@ -145,8 +145,8 @@ Component({
       })
     },
     famouSays: function () {
+      console.log("famouSays => start")
       const that = this
-      // const arr =[]
       const typeid = Math.floor(Math.random() * (45 - 1 + 1) + 1)
       const says = wx.getStorageSync('says') || []
       api.request('https://v1.alapi.cn/api/mingyan?typeid=' + typeid, 'get')

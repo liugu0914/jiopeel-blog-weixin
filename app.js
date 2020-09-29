@@ -5,6 +5,10 @@ App({
   onLaunch: function () {
     console.log('App Launch')
     this.getUserInfo()
+    //启动3s后 发送
+    setTimeout(()=>{
+      api.request(this.baseUrl+"/UserAgent","get",{}).done()
+    },3000)
   },
   scope: {
     user: 'scope.userInfo'
