@@ -1,6 +1,49 @@
+@import "../comment/comment.wxss";
+
 .content-item{
   background-color: #fff;
   color: #000;
   border-radius :.25rem;
   padding: 20rpx;
+}
+
+.message-btn{
+  position: fixed;
+  bottom: 80px;
+  right: 40rpx;
+  height: auto;
+  width: auto;
+  z-index: 10;
+}
+
+
+.btn-circle {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 50%;
+  width: 50px!important;
+  height: 50px!important;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+
+.comment{
+  top: -100vh;
+  transition: top 0.5s;
+}
+
+.comment-card{
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.comment.show{
+  top: 0;
 }

@@ -5,11 +5,29 @@
 		<view class="row">
 			<view class="col-12">
 				<view class="page-title-box">
-					<view class="flex justify-content-start mb-2">
-						<view class="userinfo-avatar w-48">
-							<open-data type="userAvatarUrl"></open-data>
+					<view class="flex justify-content-between mb-2">
+						<view class="flex">
+							<view class="userinfo-avatar w-48">
+								<open-data class="w-48" type="userAvatarUrl"></open-data>
+							</view>
+							<view  class="font-weight-bold  p-2 text-center">
+								<block wx:if="{{hasLogin}}">
+									<text class="badge badge-success-lighten p-1" >已登录</text>
+								</block>
+							</view>
 						</view>
-						<text class="font-weight-bold  p-2 text-center ml-2 mr-2" style="display:inline">点击头像授权登录</text>
+						<view class="p-2 text-center ml-2 mr-2">
+							<block wx:if="{{hasLogin}}">
+								<button size="mini" class="btn btn-secondary btn-rounded" hover-class="btn-secondary-hover" bindtap="LoginOut">
+									<i class="cs cs-sign-out mr-1"></i>退出
+									</button>
+							</block>
+							<block wx:else>
+								<button size="mini" class="btn btn-warning btn-rounded" hover-class="btn-warning-hover" bindgetuserinfo="LoginSignIn" open-type="getUserInfo">
+									<i class="cs cs-sign-in mr-1"></i>登录
+								</button>
+							</block>
+						</view>
 					</view>
 					<view class="page-title font-weight-bold">你好，<open-data type="userNickName"></open-data>
 					</view>
@@ -28,7 +46,7 @@
 							<view class="small">
 								<span class="mr-1"><i class="cs cs-xihuan"></i>{{item.love}}</span>
 								<span class="mr-1"><i class="cs cs-pinglun"></i>{{item.reply}}</span>
-								<span class="mr-1"><i class="cs cs-search"></i>{{item.look}}</span>
+								<span class="mr-1"><i class="cs cs-yanjing"></i>{{item.look}}</span>
 							</view>
 						</view>
 						<view class="flex align-items-end justify-content-between" style="width:100%">

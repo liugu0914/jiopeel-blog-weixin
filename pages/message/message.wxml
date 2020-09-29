@@ -1,4 +1,4 @@
-
+<import src="../comment/comment.wxml" />
 <view class="container">
 	<view class="container-fluid">
 
@@ -7,7 +7,7 @@
             <view class="text-center text-muted small mb-2">{{item.ctime}}</view>
             <view class="flex  mr-2">
               <view class="mr-1">
-                <image class="rounded-circle w-40" src="../../images/user.png"></image>
+                <image class="rounded-circle w-40" src="{{item.imgurl?item.imgurl:'../../images/user.png'}}"></image>
               </view>
               <view>
                 <view class="pb-2 font-weight-bold">{{item.author}}</view>
@@ -20,7 +20,7 @@
               <view class="text-center text-muted small mb-2">{{reply.ctime}}</view>
               <view class="flex  mr-2">
                 <view class="mr-1">
-                  <image class="rounded-circle w-40" src="../../images/user.png"></image>
+                  <image class="rounded-circle w-40"  src="{{reply.imgurl?reply.imgurl:'../../images/user.png'}}"></image>
                 </view>
                 <view>
                   <view class="pb-2 font-weight-bold">{{reply.author}}</view>
@@ -39,3 +39,9 @@
 		</view>
 	</view>
 </view>
+<view class="message-btn" bindtap="openComment">
+  <button  bindtap="openComment" hover-class="btn-warning-hover" class="btn btn-warning btn-circle">
+    <i class="cs cs-bianji"></i>
+  </button>
+</view>
+<template is="commentarea" data="{{...template}}"/>

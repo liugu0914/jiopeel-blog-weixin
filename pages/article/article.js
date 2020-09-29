@@ -5,7 +5,7 @@ import WxParse from '../../wxParse/wxParse.js';
 //获取应用实例
 const app = getApp()
 const baseUrl = app.baseUrl;
-
+const gbData = app.globalData;
 Component({
   data: {
     contentid: '0',
@@ -17,6 +17,7 @@ Component({
     total: 0,
     msg: '加载中...',
     template: {
+      chkLoginClass:'',
       title:'评论',
       disabled: true,
       comment: "",
@@ -253,8 +254,14 @@ Component({
     openComment: function (event) {
       console.log("openComment")
       console.log(event)
+      if(!gbData.userSecret){
+        return this.setData({
+          "template.chkLoginClass":'show'
+        })
+      }
       const data =event.currentTarget.dataset
       this.setData({
+        "template.chkLoginClass":'',
         "template.class": "show",
         "template.disabled": true,
         "template.showEmoji": false,
@@ -307,9 +314,11 @@ Component({
         title: '评论发射中...',
       })
       api.request(baseUrl+"/saveComments","post",{
-        author: "cxx",
         comment: that.data.template.comment,
         contact: "weixin",
+        author: gbData.userInfo.nickName,
+        userid : gbData.userSecret.userid,
+        imgurl : gbData.userInfo.avatarUrl,
         contentid: that.data.contentid,
         style: "content",
         superid: that.data.template.superid || '0',
@@ -324,8 +333,39 @@ Component({
           msg: '加载中...'
         })
         that.onReachBottom()
-      }).done().finally(()=>{
+        wx.showToast({
+          title: "已发送评论",
+          icon: 'success',
+          mask: true,
+          duration: 2000
+        })
+      }).catch((msg)=>{
         wx.hideLoading()
+        return wx.showToast({
+          title: msg,
+          icon: 'none',
+          mask: true,
+          duration: 2000
+        })
+      }).finally(()=>{
+        wx.hideLoading()
+      })
+    },
+    /**
+     * 登录
+     */
+    LoginSignIn: function (event) {
+      app.LoginSignIn(this,event)
+      return this.setData({
+        "template.chkLoginClass":''
+      })
+    },
+    /**
+     * 取消登录
+     */
+    CancelLoginSignIn: function () {
+      return this.setData({
+        "template.chkLoginClass":''
       })
     }
   }

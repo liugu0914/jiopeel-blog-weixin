@@ -5,18 +5,9 @@ import Tool from '../../utils/tool';
 //获取应用实例
 const app = getApp()
 const gData = app.globalData;
-const baseUrl =app.baseUrl;
+const baseUrl = app.baseUrl;
+const wxUrl = app.wxUrl;
 Component({
-  pageLifetimes: {
-    show() {
-      if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 0
-        })
-      }
-    }
-  },
   data: {
     items: [],
     height: 100,
@@ -26,7 +17,8 @@ Component({
     sayUserName: '',
     pages: 0,
     pageNum: 0,
-    msg: '加载中...'
+    msg: '加载中...',
+    hasLogin: false
   },
   methods: {
     onLoad: function () {
@@ -37,6 +29,24 @@ Component({
         })
       }
       Promise.resolve(this.onRefresh())
+      if (!gData.userInfo && !gData.userSecret) {
+        app.userInfoReadyCallback = res => {
+          gData.userInfo = res.userInfo
+          this.login()
+        }
+      }
+    },
+    onShow: function (options) {
+      console.log(options)
+      console.log('index show')
+      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 0
+        })
+      }
+      this.setData({
+        hasLogin: gData.userSecret
+      })
     },
     loadData: function (callback) {
       const that = this
@@ -52,10 +62,9 @@ Component({
       }
       this.getContents(callback)
     },
-
     getContents: function (callback) {
       const that = this
-      api.request(baseUrl+'/getContentList', 'post', {
+      api.request(baseUrl + '/getContentList', 'post', {
         pageNum: that.data.pageNum,
         alias: 'home'
       }).then((base) => {
@@ -84,7 +93,7 @@ Component({
         wx.showToast({
           title: res,
           icon: 'none',
-          mask:true,
+          mask: true,
           duration: 2000
         })
       }).done().finally(() => {
@@ -118,10 +127,9 @@ Component({
      *  下拉刷新被触发
      */
     onRefresh: function () {
-      const that = this
-      if (that._freshing) return
-      that._freshing = true
-      that.setData({
+      if (this._freshing) return
+      this._freshing = true
+      this.setData({
         pages: 0,
         pageNum: 0,
         items: [],
@@ -129,40 +137,40 @@ Component({
         triggered: true
       })
       this.famouSays()
-      that.loadData(() => {
-        that.setData({
+      this.loadData(() => {
+        this.setData({
           triggered: false
         })
-        that._freshing = false
+        this._freshing = false
       })
     },
-    famouSays:function(){
+    famouSays: function () {
       const that = this
       // const arr =[]
-      const typeid= Math.floor(Math.random() * (45 - 1 + 1) + 1)
+      const typeid = Math.floor(Math.random() * (45 - 1 + 1) + 1)
       const says = wx.getStorageSync('says') || []
-      api.request('https://v1.alapi.cn/api/mingyan?typeid='+typeid,'get')
-      .then((res)=>{
-        console.log(res)
-        if(res.code !== 200){
-          return
-        }
-        const sayData ={
-          say: res.data.content,
-          sayUserName: res.data.author
-        }
-        says.push(sayData)
-        wx.setStorageSync('says',says)
-        that.setData(sayData)
-      }).catch(()=>{
-        if(says.length ===0){
-          return
-        }
-        const key =Math.floor(Math.random() * (says.length - 1 ))
-        that.setData(says[key])
-      })
+      api.request('https://v1.alapi.cn/api/mingyan?typeid=' + typeid, 'get')
+        .then((res) => {
+          console.log(res)
+          if (res.code !== 200) {
+            return
+          }
+          const sayData = {
+            say: res.data.content,
+            sayUserName: res.data.author
+          }
+          says.push(sayData)
+          wx.setStorageSync('says', says)
+          that.setData(sayData)
+        }).catch(() => {
+          if (says.length === 0) {
+            return
+          }
+          const key = Math.floor(Math.random() * (says.length - 1))
+          that.setData(says[key])
+        })
     },
-    openArticle:function(event){
+    openArticle: function (event) {
       console.log(event)
       const target = event.currentTarget
       const id = target.id
@@ -170,19 +178,21 @@ Component({
         url: '/pages/article/article',
         events: {
           // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-          acceptDataFromOpenedPage: function(data) {
+          acceptDataFromOpenedPage: function (data) {
             console.log(data)
           },
-          someEvent: function(data) {
+          someEvent: function (data) {
             console.log(data)
           }
         },
-        success: function(res) {
+        success: function (res) {
           console.log("打开成功")
           // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit('acceptDataFromOpenerPage', { id:id })
+          res.eventChannel.emit('acceptDataFromOpenerPage', {
+            id: id
+          })
         },
-        fail:function(res) {
+        fail: function (res) {
           console.log("开启失败 ：" + res)
           return wx.showToast({
             title: "页面无效",
@@ -193,9 +203,14 @@ Component({
         }
       })
     },
-    onShow(options) {
-      console.log(options)
-      console.log('index show')
+    LoginSignIn: function (event) {
+      app.LoginSignIn(this,event)
+    },
+    LoginOut: function (event) {
+      app.LoginOut(this,event)
+    },
+    login: function (callback) {
+      app.login(this,callback)
     }
   }
 })

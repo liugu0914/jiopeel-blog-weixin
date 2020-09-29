@@ -24,12 +24,18 @@
     margin-left: -15px;
 }
 
+.wx-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .col-12 {
     max-width: 100%;
     position: relative;
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
+    flex: 0 0 100%;
 }
 
 .card {
@@ -222,7 +228,7 @@ Size
 }
 
 .w-100p {
-    width: 100%;
+    width: 100% !important;
 }
 
 .w-90 {
@@ -306,10 +312,22 @@ Size
     border-color: #ffbc00;
 }
 
+.btn-warning-hover {
+    color: #313a46;
+    background-color: #d9a000;
+    border-color: #cc9600;
+}
+
 .btn-danger {
     color: #fff;
     background-color: #fa5c7c;
     border-color: #fa5c7c;
+}
+
+.btn-dark-hover {
+    color: #fff;
+    background-color: #212730;
+    border-color: #1c2128;
 }
 
 .btn-info {
@@ -324,6 +342,19 @@ Size
     background-color: #e3eaef;
     border-color: #e3eaef;
 }
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary-hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
 
 .btn-dark {
     color: #fff;
@@ -379,8 +410,61 @@ Size
     box-shadow: 0 0 0 0.2rem rgba(251, 116, 144, 0.5);
 }
 
+
 .btn-none{
     box-shadow:none!important;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    -webkit-transition: color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.badge-success-lighten {
+    color: #0acf97;
+    background-color: rgba(10, 207, 151, 0.18);
+}
+
+.badge-warning-lighten {
+    color: #ffbc00;
+    background-color: rgba(255, 188, 0, 0.18);
+}
+
+.badge-info-lighten {
+    color: #39afd1;
+    background-color: rgba(57, 175, 209, 0.18);
+}
+
+.badge-danger-lighten {
+    color: #fa5c7c;
+    background-color: rgba(250, 92, 124, 0.18);
+}
+
+.badge-dark-lighten {
+    color: #313a46;
+    background-color: rgba(49, 58, 70, 0.18);
+}
+
+.badge-secondary-lighten {
+    color: #6c757d;
+    background-color: rgba(108, 117, 125, 0.18);
 }
 
 .text-secondary {

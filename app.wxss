@@ -6,7 +6,7 @@ page {
   height:100%;
 }
 
-view{
+view, button{
   box-sizing: border-box;
 }
 

@@ -3,7 +3,7 @@
 		<view style="color: {{selected === index ? selectedColor : color}}"><i class="icon-img {{item.icon}}"></i></view>
 		<view style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</view>
 	</view>
-	<view class="tab-add">
+	<!-- <view class="tab-add">
   <span class="icon"><i class="cs cs-jia"></i></span>
-  </view>
+  </view> -->
 </view>

@@ -1,6 +1,6 @@
 <template name="commentarea">
 	<view class="comment {{class}} {{hasEmoji}}">
-		<view class="card comment-card {{hasEmoji}}" >
+		<view class="card comment-card {{hasEmoji}}">
 			<view catchtouchmove="StopMove" class="flex align-content-center justify-content-between comment-header">
 				<view class="w-100p text-left">
 					<i class="cs cs-close" bindtap="closeComment" style="font-size: 1.2rem;"></i>
@@ -10,16 +10,16 @@
 				</view>
 				<view class="w-100p flex  justify-content-end text-right">
 					<view class="w-auto">
-						<button class="btn btn-success btn-none small m-0" bindtap="sendComment" disabled="{{disabled}}" hover-class="btn-success-hover" size="mini">
-							提交
+						<button class="btn btn-dark btn-none small m-0" bindtap="sendComment" disabled="{{disabled}}" hover-class="btn-dark-hover" size="mini">
+							<i class="cs cs-publish"></i>发射
 						</button>
 					</view>
 				</view>
 			</view>
-			<view class="card-body comment-card-body pb-1" >
-				<scroll-view class="pb-2" scroll-y="true" >
-					<textarea id="editor" value="{{comment}}" cursor-spacing="200" focus="{{focus}}" class="comment-textarea {{hasEmoji}}" show-confirm-bar="false" maxlength="300" bindinput="inputChange" placeholder="快来评论吧~"/>
-				</scroll-view>
+			<view class="card-body comment-card-body pb-1">
+				<scroll-view class="pb-2" scroll-y="true">
+					<textarea id="editor" value="{{comment}}" cursor-spacing="200" focus="{{focus}}" class="comment-textarea {{hasEmoji}}" show-confirm-bar="false" maxlength="300" bindinput="inputChange" placeholder="快来评论吧~" />
+					</scroll-view>
 				<view class="w-auto"  catchtouchmove="StopMove">
 					<i class="cs {{showEmoji?'cs-xiangxia':'cs-biaoqing'}}" bindtap="showEmoji" style="font-size: 1.2rem;"></i>
 				</view>
@@ -31,6 +31,33 @@
 			</view>
 		</view>
 	</view>
-	
-	<view class="comment-mask {{class}}" bindtap="closeComment" catchtouchmove="StopMove"></view>
+	<view class="comment-ask flex {{chkLoginClass}}" catchtouchmove="StopMove">
+		<view class="container-fluid flex justify-content-center align-items-center" style="height: 100%;">
+			<view class="wx-row w-100p flex justify-content-center align-content-center">
+				<view class="col-12">
+					<view class="card">
+							<view class="card-body p-2">
+								<view class="text-center p-2">
+								 请先登录后再操作
+								</view>
+								<view class="flex justify-content-between">
+									<view class="text-center w-100p">
+										<button size="mini" class="btn btn-secondary btn-rounded m-1" bindtap="CancelLoginSignIn" hover-class="btn-secondary-hover">
+												<i class="cs cs-close mr-1"></i>取消
+										</button>
+									</view>
+									<view class="text-center w-100p">
+										<button size="mini" class="btn btn-warning btn-rounded m-1" hover-class="btn-warning-hover" bindgetuserinfo="LoginSignIn" open-type="getUserInfo">
+												<i class="cs cs-sign-in mr-1"></i>登录
+										</button>
+									</view>
+								</view>
+							</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="comment-mask  {{class}}" bindtap="closeComment" catchtouchmove="StopMove"></view>
 </template>
