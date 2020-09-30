@@ -14,6 +14,7 @@ Component({
     msg:'加载中...',
     pageNum:0,
     pages : 0,
+    isOpen:false,
     template: {
       title:'评论',
       disabled: true,
@@ -29,6 +30,9 @@ Component({
   methods :{
     onLoad: function () {
       console.log("留言 onload")
+      this.setData({
+        isOpen :gbData.isOpen
+      })
       this.loadComments();
     },
     onShow:function(){

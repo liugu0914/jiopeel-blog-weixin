@@ -16,6 +16,7 @@ Component({
     pageNum: 0,
     total: 0,
     msg: '加载中...',
+    isOpen:false,
     template: {
       chkLoginClass:'',
       title:'评论',
@@ -32,7 +33,9 @@ Component({
     onLoad: function () {
       console.log("文章 onload")
       const that = this
-      this
+      that.setData({
+        isOpen :gbData.isOpen
+      })
       const eventChannel = that.getOpenerEventChannel()
       // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
       eventChannel.on('acceptDataFromOpenerPage', function (data) {
@@ -50,6 +53,7 @@ Component({
         })
         that.loadContent(data.id)
       })
+      
     },
     /**
      * 加载文章

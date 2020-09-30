@@ -43,7 +43,9 @@
 						<text class="text-muted small">({{total}})</text>
 						</text>
 					</view>
-					<view  class="text-info middle" bindtap="openComment">写评论</view>
+					<view wx:if="{{isOpen}}" class="text-warning middle" bindtap="openComment">
+						<i class="cs cs-bianji"></i><text>评论</text>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -67,7 +69,7 @@
 						</view>
 						<view class="pb-1 small">
 							<text class="text-muted">{{comment.ctime}}</text>
-							<view class="float-right"  bindtap="openComment" data-superid="{{comment.id}}" data-topid="{{comment.id}}"  data-title="{{comment.author}}">
+							<view wx:if="{{isOpen}}" class="float-right"  bindtap="openComment" data-superid="{{comment.id}}" data-topid="{{comment.id}}"  data-title="{{comment.author}}">
 								<i class="cs cs-pinglun  mr-1"></i>
 								<text>回复</text>
 							</view>
@@ -97,7 +99,7 @@
 								</view>
 								<view class="pb-1 small">
 									<text class="text-muted">{{reply.ctime}}</text>
-									<view class="float-right"  bindtap="openComment"  data-superid="{{reply.id}}" data-topid="{{reply.topid}}" data-title="{{reply.author}}">
+									<view wx:if="{{isOpen}}" class="float-right"  bindtap="openComment"  data-superid="{{reply.id}}" data-topid="{{reply.topid}}" data-title="{{reply.author}}">
 										<i class="cs cs-pinglun  mr-1"></i>
 										<text>回复</text>
 									</view>
