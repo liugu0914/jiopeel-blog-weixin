@@ -161,7 +161,7 @@ App({
     sys: wx.getSystemInfoSync()
   },
   baseUrl: 'https://admin.zhikezhui.com/api-nta/blog',
-  wxUrl: 'http://localhost:8088/api-nta/wx',
+  wxUrl: 'https://admin.zhikezhui.com/api-nta/wx',
   upUrl: 'https://up.zhikezhui.com',
   emoji: [{
     "id": "yiwen",
