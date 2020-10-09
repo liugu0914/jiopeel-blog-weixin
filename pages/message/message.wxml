@@ -1,4 +1,13 @@
 <import src="../comment/comment.wxml" />
+<scroll-view style="height:{{height}}px"
+ refresher-enabled="true" 
+ bindrefresherrefresh="onPullDownRefresh" 
+ refresher-triggered="{{triggered}}" 
+ scroll-y="true" enhanced="true" 
+ enable-back-to-top="true" 
+ bindscrolltolower='onReachBottom'
+ enhanced="true"
+ refresher-background="#f4f4f4">
 <view class="container">
 	<view class="container-fluid">
 
@@ -31,7 +40,6 @@
         </view>
       </view>
 
-      
 		<view class="row pb-6">
 			<view class="col-12">
 				<view class="text-muted text-center small">{{msg}}</view>
@@ -39,6 +47,8 @@
 		</view>
 	</view>
 </view>
+</scroll-view>
+
 <view wx:if="{{isOpen}}" class="message-btn" bindtap="openComment">
   <button  bindtap="openComment" hover-class="btn-warning-hover" class="btn btn-warning btn-circle">
     <i class="cs cs-bianji"></i>

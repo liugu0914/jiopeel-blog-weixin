@@ -6,7 +6,6 @@ import Tool from '../../utils/tool';
 const app = getApp()
 const gData = app.globalData;
 const baseUrl = app.baseUrl;
-const wxUrl = app.wxUrl;
 Component({
   data: {
     items: [],

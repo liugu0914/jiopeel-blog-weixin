@@ -1,71 +1,79 @@
 <!--index.wxml-->
-<scroll-view class="container" style="height:{{height}}px" refresher-enabled="true" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}" scroll-y="true" enhanced="true" enable-back-to-top="true" bindscrolltolower='loadMore'>
-
-	<view class="container-fluid">
-		<view class="row">
-			<view class="col-12">
-				<view class="page-title-box">
-					<view class="flex justify-content-between mb-2">
-						<view class="flex">
-							<view class="userinfo-avatar w-48">
-								<open-data class="w-48" type="userAvatarUrl"></open-data>
+<scroll-view style="height:{{height}}px"
+ refresher-enabled="true" 
+ bindrefresherrefresh="onRefresh" 
+ refresher-triggered="{{triggered}}" 
+ scroll-y="true" enhanced="true" 
+ enable-back-to-top="true" 
+ bindscrolltolower='loadMore'
+ enhanced="true"
+ refresher-background="#f4f4f4">
+	<view class="container">
+		<view class="container-fluid">
+			<view class="row">
+				<view class="col-12">
+					<view class="page-title-box">
+						<view class="flex justify-content-between mb-2">
+							<view class="flex">
+								<view class="userinfo-avatar w-48">
+									<open-data class="w-48" type="userAvatarUrl"></open-data>
+								</view>
+								<view class="font-weight-bold  p-2 text-center">
+									<block wx:if="{{hasLogin}}">
+										<text class="badge badge-success-lighten p-1" >已登录</text>
+									</block>
+								</view>
 							</view>
-							<view  class="font-weight-bold  p-2 text-center">
+							<view class="p-2 text-center ml-2 mr-2">
 								<block wx:if="{{hasLogin}}">
-									<text class="badge badge-success-lighten p-1" >已登录</text>
+									<button size="mini" class="btn btn-secondary btn-rounded" hover-class="btn-secondary-hover" bindtap="LoginOut">
+										<i class="cs cs-sign-out mr-1"></i>退出
+									</button>
+								</block>
+								<block wx:else>
+									<button size="mini" class="btn btn-warning btn-rounded" hover-class="btn-warning-hover" bindgetuserinfo="LoginSignIn" open-type="getUserInfo">
+										<i class="cs cs-sign-in mr-1"></i>登录
+									</button>
 								</block>
 							</view>
 						</view>
-						<view class="p-2 text-center ml-2 mr-2">
-							<block wx:if="{{hasLogin}}">
-								<button size="mini" class="btn btn-secondary btn-rounded" hover-class="btn-secondary-hover" bindtap="LoginOut">
-									<i class="cs cs-sign-out mr-1"></i>退出
-									</button>
-							</block>
-							<block wx:else>
-								<button size="mini" class="btn btn-warning btn-rounded" hover-class="btn-warning-hover" bindgetuserinfo="LoginSignIn" open-type="getUserInfo">
-									<i class="cs cs-sign-in mr-1"></i>登录
-								</button>
-							</block>
+						<view class="page-title font-weight-bold">你好，<open-data type="userNickName"></open-data>
 						</view>
+						<view class="page-title text-muted small">{{say}}</view>
+						<view class="page-title text-muted small text-right" style="width:100%">{{sayUserName? '——— '+sayUserName:''}}</view>
 					</view>
-					<view class="page-title font-weight-bold">你好，<open-data type="userNickName"></open-data>
-					</view>
-					<view class="page-title text-muted small">{{say}}</view>
-					<view class="page-title text-muted small text-right" style="width:100%">{{sayUserName? '——— '+sayUserName:''}}</view>
 				</view>
 			</view>
-		</view>
 
-		<view class="row" wx:for="{{items}}" wx:for-item="item" wx:key="index">
-			<view class="col-12">
-				<view class="card card-bg-img h-30" id="{{item.id}}" data-id="{{item.id}}" catchtap="openArticle" style="background-image:url('{{item.cover}}')">
-					<view class="card-body text-white flex flex-column align-items-start justify-content-between">
-						<view class="flex align-items-start justify-content-between" style="width:100%">
-							<view class="font-weight-bold small">{{item.ctime}}</view>
-							<view class="small">
-								<span class="mr-1"><i class="cs cs-xihuan"></i>{{item.love}}</span>
-								<span class="mr-1"><i class="cs cs-pinglun"></i>{{item.reply}}</span>
-								<span class="mr-1"><i class="cs cs-yanjing"></i>{{item.look}}</span>
+			<view class="row" wx:for="{{items}}" wx:for-item="item" wx:key="index">
+				<view class="col-12">
+					<view class="card card-bg-img h-30" id="{{item.id}}" data-id="{{item.id}}" catchtap="openArticle" style="background-image:url('{{item.cover}}')">
+						<view class="card-body text-white flex flex-column align-items-start justify-content-between">
+							<view class="flex align-items-start justify-content-between" style="width:100%">
+								<view class="font-weight-bold small">{{item.ctime}}</view>
+								<view class="small">
+									<span class="mr-1"><i class="cs cs-xihuan"></i>{{item.love}}</span>
+									<span class="mr-1"><i class="cs cs-pinglun"></i>{{item.reply}}</span>
+									<span class="mr-1"><i class="cs cs-yanjing"></i>{{item.look}}</span>
+								</view>
 							</view>
-						</view>
-						<view class="flex align-items-end justify-content-between" style="width:100%">
-							<view>
-								<view class="font-weight-bold mb-1">{{item.title}}</view>
-								<view class="small">{{item.content}}</view>
+							<view class="flex align-items-end justify-content-between" style="width:100%">
+								<view>
+									<view class="font-weight-bold mb-1">{{item.title}}</view>
+									<view class="small">{{item.content}}</view>
+								</view>
+								<!-- <view class="small">知可追</view> -->
 							</view>
-							<!-- <view class="small">知可追</view> -->
 						</view>
 					</view>
 				</view>
 			</view>
-		</view>
 
-		<view class="row pb-6">
-			<view class="col-12">
-				<view class="text-muted text-center small">{{msg}}</view>
+			<view class="row pb-6">
+				<view class="col-12">
+					<view class="text-muted text-center small">{{msg}}</view>
+				</view>
 			</view>
 		</view>
 	</view>
-
 </scroll-view>

@@ -15,6 +15,8 @@ Component({
     pageNum:0,
     pages : 0,
     isOpen:false,
+    height: 100,
+    triggered:false,
     template: {
       title:'评论',
       disabled: true,
@@ -30,6 +32,11 @@ Component({
   methods :{
     onLoad: function () {
       console.log("留言 onload")
+      if (gbData.sys && gbData.sys.windowHeight) {
+        this.setData({
+          height: gbData.sys.windowHeight
+        })
+      }
       this.setData({
         isOpen :gbData.isOpen
       })
@@ -126,10 +133,13 @@ Component({
         pages: 0,
         pageNum: 0,
         items: [],
-        msg:'加载中...'
+        msg:'加载中...',
+        triggered: true
       })
       that.loadComments(() => {
-        wx.stopPullDownRefresh();
+        that.setData({
+          triggered: false
+        })
         that._freshing = false
       })
     },

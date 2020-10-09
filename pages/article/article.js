@@ -55,6 +55,15 @@ Component({
       })
       
     },
+    onReady: function() {
+      console.log("页面首次渲染完毕时执行")
+      const that = this
+      //1s后 发送页面查看计数
+      setTimeout(() => {
+        console.log("阅读计数")
+        api.request(baseUrl + "/AddLook", "get",{id:that.data.contentid}).done()
+      }, 1000)
+    },
     /**
      * 加载文章
      */

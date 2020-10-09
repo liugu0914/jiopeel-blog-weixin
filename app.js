@@ -5,22 +5,25 @@ App({
   onLaunch: function () {
     console.log('App Launch')
     this.getUserInfo()
+  },
+  onShow() {
+    console.log('App Show')
     //启动1s后 检测是否开启评论功能
     setTimeout(() => {
-    api.request(this.wxUrl + "/commentAble", "get")
-      .then((res) => {
-        console.log("isOpen")
-        if (res.status !== 200 || !res.data)
-          return
-        const isOpen = res.data.isOpen
-        console.log(isOpen)
-        this.globalData.isOpen = isOpen === '1' ? true :false
-      }).done()
+      api.request(this.wxUrl + "/commentAble", "get")
+        .then((res) => {
+          console.log("isOpen")
+          if (res.status !== 200 || !res.data)
+            return
+          const isOpen = res.data.isOpen
+          console.log(isOpen)
+          this.globalData.isOpen = isOpen === '1' ? true : false
+        }).done()
     }, 500)
-    // 启动3s后 发送浏览器信息
+    //3s后 发送浏览器信息
     setTimeout(() => {
       console.log("UserAgent")
-      api.request(this.baseUrl + "/UserAgent", "get", {}).done()
+      api.request(this.baseUrl + "/UserAgent", "get").done()
     }, 3000)
   },
   scope: {
@@ -130,10 +133,6 @@ App({
           })
       }
     })
-  },
-  onShow(options) {
-    console.log(options)
-    console.log('App show')
   },
   onHide() {
     console.log('App hide')
